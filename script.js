@@ -1,8 +1,5 @@
 
 document.getElementById("current-date").textContent = "Bieżąca data: " + new Date().toLocaleDateString('pl-PL');
-window.onload = function() {
-    document.body.classList.add("loaded");
-};
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
