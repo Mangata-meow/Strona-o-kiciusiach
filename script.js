@@ -1,5 +1,16 @@
 
 document.getElementById("current-date").textContent = "Bieżąca data: " + new Date().toLocaleDateString('pl-PL');
 window.onload = function() {
-    document.body.classList.add("loaded"); // Po załadowaniu strony, uruchom animację
+    document.body.classList.add("loaded");
 };
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target); 
+        }
+    });
+}, { threshold: 0.5 }); 
+document.querySelectorAll('.content-box').forEach((box) => {
+    observer.observe(box);
+});
