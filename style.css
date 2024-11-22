@@ -1,17 +1,17 @@
 body {
-    background-color: powderblue;
+    background-color:rgb(218, 165, 233);
     font-family: Arial, sans-serif;
 }
  
 h1 {
-    background-color: #3277c8;
+    background-color: rgb(204, 108, 231);
     color: white;
     text-align: center;
     padding: 20px;
 }
  
 h2 {
-    background-color: #3277c8;
+    background-color: rgb(204, 108, 231);
     color: #ebeced;
     padding: 10px;
     text-align: center;
@@ -33,7 +33,7 @@ ul li {
 }
  
 a {
-    color: #3277c8;
+    color:rgb(204, 108, 231);
     text-decoration: none;
     font-weight: bold;
 }
