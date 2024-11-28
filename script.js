@@ -39,8 +39,8 @@ darkModeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     darkModeToggle.textContent =
         document.body.classList.contains("dark-mode")
-            ? "☀️ Light Mode"
-            : "🌙 Dark Mode";
+            ? "☀️ Tryb jasny"
+            : "🌙 Tryb ciemny";
 });
 const title = document.querySelector("h1");
 const titleText = title.textContent;
