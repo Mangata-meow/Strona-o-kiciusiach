@@ -1,5 +1,24 @@
 
-document.getElementById("current-date").textContent = "Bieżąca data: " + new Date().toLocaleDateString('pl-PL');
+// Pobranie bieżącej daty
+const currentDate = new Date();
+const formattedDate = currentDate.toLocaleDateString('pl-PL');
+
+// Ustalenie godziny i w zależności od niej wyświetlanie odpowiedniego powitania
+const hours = currentDate.getHours();
+let greetingMessage = 'Miłego dnia! 🐱';
+
+if (hours < 12) {
+    greetingMessage = 'Dzień dobry! 🐱';
+} else if (hours < 18) {
+    greetingMessage = 'Dzień w połowie minął! 🐱';
+} else {
+    greetingMessage = 'Dobry wieczór! 🐱';
+}
+
+// Wyświetlanie powitania oraz daty
+document.getElementById("greeting-message").textContent = greetingMessage;
+document.getElementById("current-date").textContent = "Bieżąca data: " + formattedDate;
+
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -96,3 +115,55 @@ function getRandomColor() {
 // Nasłuchiwanie na kliknięcie przycisku
 const factButton = document.getElementById("factButton");
 factButton.addEventListener("click", showRandomFact);
+function updateClock() {
+    const now = new Date();
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const dayOfWeek = now.toLocaleString('pl-PL', { weekday: 'long' });
+
+    // Formatowanie godziny
+    const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+
+    // Zmiana kolorów i emoji w zależności od pory dnia
+    let timeOfDay = '';
+    let emoji = '';
+    let message = '';
+    let bodyColor = '';
+
+    // Określenie pory dnia
+    if (hours >= 6 && hours < 12) {
+        timeOfDay = 'morning';
+        emoji = '☀️';  // Słońce dla poranka
+        message = 'Dzień dobry!';
+        bodyColor = '#F9D71C';  // Jasnożółty
+    } else if (hours >= 12 && hours < 18) {
+        timeOfDay = 'afternoon';
+        emoji = '🌞';  // Słońce w pełni
+        message = 'Miłego popołudnia!';
+        bodyColor = '#E65C60';  // Czerwono-różowy
+    } else {
+        timeOfDay = 'evening';
+        emoji = '🌙';  // Księżyc
+        message = 'Dobranoc!';
+        bodyColor = '#2E3B4E';  // Granatowy
+    }
+
+    // Ustawienie tła strony
+    document.body.style.backgroundColor = bodyColor;
+
+    // Aktualizacja tekstu na stronie
+    document.getElementById('emoji').textContent = emoji;
+    document.getElementById('day-of-week').textContent = dayOfWeek;
+    document.getElementById('time').textContent = formattedTime;
+    document.getElementById('message').textContent = message;
+
+    // Ustawienie odpowiednich klas do animacji i kolorów
+    document.getElementById('emoji').className = timeOfDay;
+    document.getElementById('time').className = timeOfDay;
+}
+
+// Aktualizuj zegar co minutę
+setInterval(updateClock, 60000);
+
+// Pierwsza inicjalizacja zegara
+updateClock();
