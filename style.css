@@ -163,26 +163,28 @@ button.dark-mode {
     transform: scale(0.95); /* Zmniejszenie przycisku po kliknięciu */
 }
 #greeting-container {
-    background-color: #e6e6fa;
+    background-color: #e6e6fa; /* Kolor tła */
     border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Cień */
     max-width: 400px;
     width: 80%;
+    text-align: center; /* Wyśrodkowanie tekstu */
+    margin: 20px auto; /* Wyśrodkowanie kontenera na stronie */
 }
 
 #greeting-message {
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: #333;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 #current-date {
     font-size: 1.2em;
     color: #555;
-    font-weight: bold;
+    font-weight: normal;
 }
-
 .cat-emoji {
     font-size: 1.8em;
     margin-left: 10px;
