@@ -56,15 +56,43 @@ function typeTitle() {
 }
 
 typeTitle();
-// Random Cat Fact
-const catFacts = [
-    "Koty przesypiają około 75% swojego życia.",
-    "Koty mają 5 palców w przednich łapkach, ale tylko 4 w tylnich.",
-    "Koty nie czują słodkiego.",
-    "Najstarszy kot na świecie dożył 38 lat."
+// Tablica ciekawostek
+const facts = [
+    "Kot ma 230 kości, podczas gdy człowiek ma tylko 206.",
+    "Koty spędzają około 70% swojego życia na spaniu.",
+    "Nos kota jest tak unikalny jak odcisk palca człowieka.",
+    "Kot może biec z prędkością do 48 km/h na krótkich dystansach.",
+    "W starożytnym Egipcie koty były czczone jako święte zwierzęta.",
+    "Koty nie mają obojczyków, co pozwala im przecisnąć się przez każdą przestrzeń, przez którą przejdzie ich głowa."
 ];
 
-document.getElementById("catFactBtn").addEventListener("click", () => {
-    const randomFact = catFacts[Math.floor(Math.random() * catFacts.length)];
-    document.getElementById("catFact").textContent = randomFact;
-});
+// Funkcja losująca ciekawostkę
+function showRandomFact() {
+    const factElement = document.getElementById("randomFact");
+    const randomIndex = Math.floor(Math.random() * facts.length);
+    factElement.textContent = facts[randomIndex];
+    
+    // Losowanie kolorów tła przycisku
+    changeButtonColor();
+}
+
+// Funkcja zmieniająca kolor przycisku
+function changeButtonColor() {
+    const button = document.getElementById("factButton");
+    const randomColor = getRandomColor();
+    button.style.backgroundColor = randomColor;
+}
+
+// Funkcja generująca losowy kolor
+function getRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+// Nasłuchiwanie na kliknięcie przycisku
+const factButton = document.getElementById("factButton");
+factButton.addEventListener("click", showRandomFact);

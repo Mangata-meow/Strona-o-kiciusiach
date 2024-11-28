@@ -123,25 +123,42 @@ button.dark-mode {
     color: #f4f4f4;
 }
 
-#catFactBtn {
-    display: block;
+#randomFactContainer {
+    text-align: center;
     margin: 20px auto;
-    padding: 10px 15px;
-    background-color: #cc6ce7;
+    padding: 20px;
+    background-color: #e6e6fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#randomFact {
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#factButton {
+    background-color: rgb(204, 108, 231);
     color: white;
     border: none;
+    padding: 15px 20px;
     font-size: 16px;
-    cursor: pointer;
     border-radius: 5px;
-}
-
-#catFactBtn:hover {
-    background-color: #a353c9;
-}
-
-#catFact {
-    text-align: center;
-    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     margin-top: 10px;
-    color: #333;
+}
+
+#factButton:hover {
+    background-color: #a353c9; /* Kolor na hover */
+}
+
+#factButton:active {
+    transform: scale(0.95); /* Zmniejszenie przycisku po kliknięciu */
 }
