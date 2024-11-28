@@ -12,22 +12,26 @@ document.querySelectorAll('.content-box').forEach((box) => {
     observer.observe(box);
 });
 
-const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+// Pobierz przycisk
+const scrollToTopBtn = document.getElementById("scrollToTop");
 
+// Funkcja do pokazania/ukrycia przycisku na podstawie scrolla
 window.addEventListener("scroll", () => {
-    if (window.scrollY > 200) {
-        scrollToTopBtn.style.display = "block";
+    if (window.scrollY > 300) { // Jeśli przewiniemy 300px
+        scrollToTopBtn.style.display = "block"; // Pokaż przycisk
     } else {
-        scrollToTopBtn.style.display = "none";
+        scrollToTopBtn.style.display = "none"; // Ukryj przycisk
     }
 });
 
+// Funkcja do przewijania na górę
 scrollToTopBtn.addEventListener("click", () => {
     window.scrollTo({
         top: 0,
-        behavior: "smooth",
+        behavior: "smooth" // Płynne przewijanie
     });
 });
+
 // Dark Mode Toggle
 const darkModeToggle = document.getElementById("darkModeToggle");
 
