@@ -1,8 +1,12 @@
 body {
     background-color:rgb(218, 165, 233);
     font-family: Arial, sans-serif;
+        width: 100%;
+        max-width: 100vw;  /* Zapobiega rozszerzaniu strony poza widok */
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;  /* Ukrywa przewijanie poziome */
 }
- 
 h1 {
     background-color: rgb(204, 108, 231);
     color: white;
@@ -249,4 +253,26 @@ h1, h2, h3 {
 #message {
     font-size: 20px;
     color: #555;
+}
+#clock-container, #calendar-container {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.container {
+    display: flex;
+    flex-direction: column;  /* Zmienia układ na pionowy */
+}
+@media screen and (max-width: 768px) {
+    /* Dostosowanie do ekranów mniejszych niż 768px */
+    .container {
+        flex-direction: column;
+    }
+    #clock-container {
+        width: 100%;
+    }
+}
+#clock-container, #calendar-container {
+    width: 100%;
+    max-width: 600px;  /* Przykład ograniczenia szerokości */
+    margin: 0 auto;  /* Wyśrodkowanie */
 }
