@@ -1,12 +1,8 @@
 body {
     background-color:rgb(218, 165, 233);
     font-family: Arial, sans-serif;
-        width: 100%;
-        max-width: 100vw;  /* Zapobiega rozszerzaniu strony poza widok */
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;  /* Ukrywa przewijanie poziome */
 }
+ 
 h1 {
     background-color: rgb(204, 108, 231);
     color: white;
@@ -165,4 +161,29 @@ button.dark-mode {
 
 #factButton:active {
     transform: scale(0.95); /* Zmniejszenie przycisku po kliknięciu */
+}
+#greeting-container {
+    background-color: #e6e6fa;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 80%;
+}
+
+#greeting-message {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#current-date {
+    font-size: 1.2em;
+    color: #555;
+    font-weight: bold;
+}
+
+.cat-emoji {
+    font-size: 1.8em;
+    margin-left: 10px;
 }

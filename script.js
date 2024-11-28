@@ -1,3 +1,22 @@
+// Pobranie bieżącej daty
+const currentDate = new Date();
+const formattedDate = currentDate.toLocaleDateString('pl-PL');
+
+// Ustalenie godziny i w zależności od niej wyświetlanie odpowiedniego powitania
+const hours = currentDate.getHours();
+let greetingMessage = 'Miłego dnia! 🐱';
+
+if (hours < 12) {
+    greetingMessage = 'Dzień dobry! 🐱';
+} else if (hours < 18) {
+    greetingMessage = 'Dzień w połowie minął! 🐱';
+} else {
+    greetingMessage = 'Dobry wieczór! 🐱';
+}
+
+// Wyświetlanie powitania oraz daty
+document.getElementById("greeting-message").textContent = greetingMessage;
+document.getElementById("current-date").textContent = "Bieżąca data: " + formattedDate;
 
 const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
@@ -95,3 +114,4 @@ function getRandomColor() {
 // Nasłuchiwanie na kliknięcie przycisku
 const factButton = document.getElementById("factButton");
 factButton.addEventListener("click", showRandomFact);
+
