@@ -104,24 +104,25 @@ h1 {
     background-color: #a353c9;
 }
 
-.floating-button {
-    position: fixed; /* Makes it stay in the same position on scroll */
-    top: 20px;
-    right: 20px;
-    background-color: #cc6ce7;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 14px;
-    border-radius: 5px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 1000; /* Ensures it stays above other elements */
+body.dark-mode {
+    background-color: #1e1e1e; /* Ciemne tło */
+    color: #f4f4f4; /* Jasny tekst */
 }
 
-.floating-button:hover {
-    background-color: #a353c9;
+h1.dark-mode, h2.dark-mode {
+    background-color: #333333; /* Ciemne tło nagłówków */
+    color: #f4f4f4; /* Jasny tekst */
 }
+
+a.dark-mode {
+    color: #bb86fc; /* Kolor linków w trybie ciemnym */
+}
+
+button.dark-mode {
+    background-color: #444444; /* Tło przycisku w trybie ciemnym */
+    color: #f4f4f4;
+}
+
 #catFactBtn {
     display: block;
     margin: 20px auto;
