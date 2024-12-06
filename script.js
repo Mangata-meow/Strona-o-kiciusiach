@@ -18,62 +18,6 @@ if (hours < 12) {
 document.getElementById("greeting-message").textContent = greetingMessage;
 document.getElementById("current-date").textContent = "Bieżąca data: " + formattedDate;
 
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            observer.unobserve(entry.target); 
-        }
-    });
-}, { threshold: 0.5 }); 
-document.querySelectorAll('.content-box').forEach((box) => {
-    observer.observe(box);
-});
-
-// Pobierz przycisk
-const scrollToTopBtn = document.getElementById("scrollToTop");
-
-// Funkcja do pokazania/ukrycia przycisku na podstawie scrolla
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) { // Jeśli przewiniemy 300px
-        scrollToTopBtn.style.display = "block"; // Pokaż przycisk
-    } else {
-        scrollToTopBtn.style.display = "none"; // Ukryj przycisk
-    }
-});
-
-// Funkcja do przewijania na górę
-scrollToTopBtn.addEventListener("click", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth" // Płynne przewijanie
-    });
-});
-
-// Dark Mode Toggle
-const darkModeToggle = document.getElementById("darkModeToggle");
-
-darkModeToggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    darkModeToggle.textContent =
-        document.body.classList.contains("dark-mode")
-            ? "☀️ Tryb jasny"
-            : "🌙 Tryb ciemny";
-});
-const title = document.querySelector("h1");
-const titleText = title.textContent;
-title.textContent = "";
-let index = 0;
-
-function typeTitle() {
-    if (index < titleText.length) {
-        title.textContent += titleText[index];
-        index++;
-        setTimeout(typeTitle, 100);
-    }
-}
-
-typeTitle();
 // Tablica ciekawostek
 const facts = [
     "Kot ma 230 kości, podczas gdy człowiek ma tylko 206.",
@@ -115,3 +59,172 @@ function getRandomColor() {
 const factButton = document.getElementById("factButton");
 factButton.addEventListener("click", showRandomFact);
 
+// Kalkulator wieku kota
+function calculateAge() {
+    const catAge = document.getElementById("cat-age").value;
+    const result = document.getElementById("cat-age-result");
+    
+    if (catAge < 0) {
+        result.textContent = "Proszę wprowadzić poprawny wiek.";
+        return;
+    }
+
+    let humanYears;
+    if (catAge === 1) {
+        humanYears = 15;
+    } else if (catAge === 2) {
+        humanYears = 24;
+    } else {
+        humanYears = 24 + (catAge - 2) * 4;
+    }
+
+    result.textContent = `Twój kot ma około ${humanYears} ludzkich lat.`;
+}
+
+// Wyszukiwarka ras kotów
+function searchRaces() {
+    const query = document.getElementById("search").value.toLowerCase();
+    const races = document.querySelectorAll("#race-list li");
+    
+    races.forEach(race => {
+        const raceName = race.textContent.toLowerCase();
+        if (raceName.includes(query)) {
+            race.style.display = "block";
+        } else {
+            race.style.display = "none";
+        }
+    });
+}
+
+// Galeria zdjęć kotów
+function openModal(imgElement) {
+    const modal = document.createElement("div");
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    modal.style.display = "flex";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
+    modal.style.cursor = "pointer";
+    modal.innerHTML = `<img src="${imgElement.src}" style="max-width: 80%; max-height: 80%; border-radius: 10px;">`;
+    
+    document.body.appendChild(modal);
+    modal.addEventListener("click", () => {
+        modal.remove();
+    });
+}
+
+// Animowany kot reagujący na ruchy kursora
+const cat = document.getElementById("cat");
+
+document.body.addEventListener("mousemove", (e) => {
+    cat.style.left = e.pageX - 50 + "px";
+    cat.style.top = e.pageY - 50 + "px";
+    cat.style.transform = "rotate(" + e.pageX / 5 + "deg)";
+});
+
+// Koty miauczące przy interakcji
+const button = document.getElementById("play-sound");
+
+button.addEventListener("click", function() {
+    const audio = new Audio('meow-sound.mp3');
+    audio.play();
+});
+
+// Kalendarz
+let currentDate = new Date();
+
+function generateCalendar(date) {
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    
+    const monthNames = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
+    document.getElementById("month-name").textContent = `${monthNames[month]} ${year}`;
+
+    const firstDayOfMonth = new Date(year, month, 1);
+    const lastDayOfMonth = new Date(year, month + 1, 0);
+    const daysInMonth = lastDayOfMonth.getDate();
+    const firstDayOfWeek = firstDayOfMonth.getDay();
+
+    const tableBody = document.querySelector("#calendar-table tbody");
+    tableBody.innerHTML = '';
+    
+    let row = tableBody.insertRow();
+    let cell;
+    let dayCount = 1;
+
+    for (let i = 0; i < firstDayOfWeek; i++) {
+        row.insertCell();
+    }
+
+    for (let i = firstDayOfWeek; dayCount <= daysInMonth; i++) {
+        if (i === 7) {
+            row = tableBody.insertRow();
+            i = 0;
+        }
+        cell = row.insertCell();
+        cell.textContent = dayCount;
+        cell.addEventListener("click", () => {
+            alert(`Kliknąłeś na dzień: ${dayCount}`);
+        });
+        dayCount++;
+    }
+}
+
+function changeMonth(offset) {
+    currentDate.setMonth(currentDate.getMonth() + offset);
+    generateCalendar(currentDate);
+}
+
+document.getElementById("prev-month").addEventListener("click", () => changeMonth(-1));
+document.getElementById("next-month").addEventListener("click", () => changeMonth(1));
+
+generateCalendar(currentDate);
+
+// Scroll to top button
+const scrollToTopBtn = document.getElementById("scrollToTop");
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) { 
+        scrollToTopBtn.style.display = "block"; 
+    } else {
+        scrollToTopBtn.style.display = "none"; 
+    }
+});
+
+scrollToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById("darkModeToggle");
+
+darkModeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    darkModeToggle.textContent =
+        document.body.classList.contains("dark-mode")
+            ? "☀️ Tryb jasny"
+            : "🌙 Tryb ciemny";
+});
+
+// Typowanie tytułu
+const title = document.querySelector("h1");
+const titleText = title.textContent;
+title.textContent = "";
+let index = 0;
+
+function typeTitle() {
+    if (index < titleText.length) {
+        title.textContent += titleText[index];
+        index++;
+        setTimeout(typeTitle, 100);
+    }
+}
+
+typeTitle();
