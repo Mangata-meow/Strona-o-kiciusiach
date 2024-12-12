@@ -1,9 +1,9 @@
 // Pobranie bieżącej daty
-const currentDate = new Date();
-const formattedDate = currentDate.toLocaleDateString('pl-PL');
+const CurrentDate = new Date();
+const formattedDate = CurrentDate.toLocaleDateString('pl-PL');
 
 // Ustalenie godziny i w zależności od niej wyświetlanie odpowiedniego powitania
-const hours = currentDate.getHours();
+const hours = CurrentDate.getHours();
 let greetingMessage = 'Miłego dnia! 🐱';
 
 if (hours < 12) {
